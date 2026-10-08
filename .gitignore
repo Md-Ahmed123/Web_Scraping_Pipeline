@@ -1,0 +1,13 @@
+venv/
+__pycache__/
+*.pyc
+
+.env
+
+logs/
+*.log
+
+.vscode/
+
+data/raw/
+data/processed/
