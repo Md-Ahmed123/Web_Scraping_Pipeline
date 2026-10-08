@@ -1,8 +1,18 @@
 from pathlib import Path
 import sys
 import uuid
+import os
 import pandas as pd
+from dotenv import load_dotenv
 from sqlalchemy import create_engine, text
+
+load_dotenv()
+
+server = os.getenv("SQL_SERVER")
+database = os.getenv("SQL_DATABASE")
+
+if not server or not database:
+    raise ValueError("SQL_SERVER and SQL_DATABASE must be configured in .env")
 if len(sys.argv) != 2:
     print("ERROR: Batch ID is required.")
     print("Usage: python src\\load.py <BatchID>")
@@ -16,8 +26,7 @@ except ValueError:
     sys.exit(1)
 
 # SQL Server connection
-server = r"PowerBI-1\SQLEXPRESS"
-database = "BookScrapingDB"
+
 
 connection_string = (
     f"mssql+pyodbc://@{server}/{database}"

@@ -5,6 +5,15 @@ import sys
 import uuid 
 from datetime import datetime
 from sqlalchemy import create_engine, text
+import os
+from dotenv import load_dotenv
+load_dotenv()
+
+server = os.getenv("SQL_SERVER")
+database = os.getenv("SQL_DATABASE")
+
+if not server or not database:
+    raise ValueError("SQL_SERVER and SQL_DATABASE must be configured in .env")
 
 # Create logs folder
 project_dir = Path(__file__).resolve().parent.parent
@@ -22,8 +31,6 @@ logging.basicConfig(
 
 batch_id = str(uuid.uuid4())
 start_time = datetime.now()
-server = r"PowerBI-1\SQLEXPRESS"
-database = "BookScrapingDB"
 
 connection_string = (
     f"mssql+pyodbc://@{server}/{database}"
