@@ -16,6 +16,20 @@ The pipeline is designed to demonstrate a practical data engineering workflow in
 * Error handling
 * Data quality checks
 
+## Project Highlights
+
+* Built a batch ETL pipeline that extracts ** book records** from a public website.
+* Implemented **retry and timeout handling** for reliable web extraction.
+* Added multi-stage **data-quality validation** before database loading.
+* Implemented **incremental loading** using the book URL as a stable business key.
+* Automatically detects **new records, changed records, and unchanged records**.
+* Uses **SQL Server transactions** to maintain consistent database updates.
+* Generates a unique **Batch ID** for every pipeline execution.
+* Maintains a `PipelineRuns` audit table for monitoring extraction, insertion, update, and failure counts.
+* Added application-level **pipeline logging and error handling**.
+* Externalized configuration using `.env` and protected local configuration with `.gitignore`.
+
+
 ## Project Architecture
 
 ```text
